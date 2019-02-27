@@ -4,10 +4,7 @@
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
-
-var GCSAdapter = require('@parse/gcs-files-adapter'); 
-
-  var api = new ParseServer({ appId: 'my_app', masterKey: 'master_key', filesAdapter: gcsAdapter })
+var S3Adapter = require('parse-server').S3Adapter;
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
@@ -21,10 +18,10 @@ var api = new ParseServer({
   appId: process.env.APP_ID || 'myAppId',
   masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
   serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed
-  filesAdapter: new GCSAdapter(
-    "GCP_PROJECT_ID",
-    "GCP_KEYFILE_PATH",
-    "GCS_BUCKET",
+  filesAdapter: new S3Adapter(
+    "S3_ACCESS_KEY",
+    "S3_SECRET_KEY",
+    "S3_BUCKET",
     {directAccess: true}
   ),
   liveQuery: {
