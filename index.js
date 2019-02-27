@@ -5,7 +5,7 @@ var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
 
-const GCSAdapter = require('@parse/gcs-files-adapter);
+const GCSAdapter = require('@parse/gcs-files-adapter');
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
